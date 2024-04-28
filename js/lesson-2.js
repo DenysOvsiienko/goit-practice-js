@@ -96,6 +96,7 @@
 //3 замінить значення premium на false
 //4 виводить зміст об'єкта users у форматі
 //'<ключ>:<значення>' використовуя Object.keys() та for...of
+
 // const user = {
 //   name: 'John',
 //   age: 20,
@@ -111,11 +112,14 @@
 //   console.log(`${key} : ${user[key]}`);
 // }
 
+
+
 //3. Напишіть ф-цію calcTotalPrice(fruits, fruitName),
 //яка приймає массив об'єктів і
 //рядок з назвою фрукта.
 //Функція рахує і повертає загальну вартість фрукта
 //з таким ім'ям, ціною та кількістю з об'єкта
+
 // const fruits = [
 //   { name: 'Яблуко', price: 45, quantity: 7 },
 //   { name: 'Апельсин', price: 60, quantity: 4 },
@@ -132,6 +136,7 @@
 //   return totalPrice;
 // }
 // console.log(calcTotalPrice(fruits, 'Яблуко'));
+
 
 // Створіть об'єкт calculator з трьомя методами
 //read(a, b) - приймає два аргумента і зберігає їх
@@ -227,3 +232,4 @@ account.withdraw(15000);
 
 
 console.log(account);
+
