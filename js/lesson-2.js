@@ -96,42 +96,47 @@
 //3 замінить значення premium на false
 //4 виводить зміст об'єкта users у форматі
 //'<ключ>:<значення>' використовуя Object.keys() та for...of
-const user = {
-  name: 'John',
-  age: 20,
-  hobby: 'tenis',
-  premium: true,
-};
-user.mood = 'happy';
-user.hobby = 'skydiving';
-user.premium = false;
 
-const keys = Object.keys(user);
-for (const key of keys) {
-  console.log(`${key} : ${user[key]}`);
-}
+// const user = {
+//   name: 'John',
+//   age: 20,
+//   hobby: 'tenis',
+//   premium: true,
+// };
+// user.mood = 'happy';
+// user.hobby = 'skydiving';
+// user.premium = false;
+
+// const keys = Object.keys(user);
+// for (const key of keys) {
+//   console.log(`${key} : ${user[key]}`);
+// }
+
+
 
 //3. Напишіть ф-цію calcTotalPrice(fruits, fruitName),
 //яка приймає массив об'єктів і
 //рядок з назвою фрукта.
 //Функція рахує і повертає загальну вартість фрукта
 //з таким ім'ям, ціною та кількістю з об'єкта
-const fruits = [
-  { name: 'Яблуко', price: 45, quantity: 7 },
-  { name: 'Апельсин', price: 60, quantity: 4 },
-  { name: 'Банан', price: 125, quantity: 8 },
-  { name: 'Груша', price: 350, quantity: 2 },
-  { name: 'Виноград', price: 440, quantity: 3 },
-];
 
-function calcTotalPrice(fruits, fruitName) {
-  let totalPrice = 0;
-  for (const fruit of fruits) {
-    if (fruit.name === fruitName) totalPrice += fruit.price * fruit.quantity;
-  }
-  return totalPrice;
-}
-console.log(calcTotalPrice(fruits, 'Яблуко'));
+// const fruits = [
+//   { name: 'Яблуко', price: 45, quantity: 7 },
+//   { name: 'Апельсин', price: 60, quantity: 4 },
+//   { name: 'Банан', price: 125, quantity: 8 },
+//   { name: 'Груша', price: 350, quantity: 2 },
+//   { name: 'Виноград', price: 440, quantity: 3 },
+// ];
+
+// function calcTotalPrice(fruits, fruitName) {
+//   let totalPrice = 0;
+//   for (const fruit of fruits) {
+//     if (fruit.name === fruitName) totalPrice += fruit.price * fruit.quantity;
+//   }
+//   return totalPrice;
+// }
+// console.log(calcTotalPrice(fruits, 'Яблуко'));
+
 
 // Створіть об'єкт calculator з трьомя методами
 //read(a, b) - приймає два аргумента і зберігає їх
@@ -139,25 +144,92 @@ console.log(calcTotalPrice(fruits, 'Яблуко'));
 //sum() повертає сумму збереженних значень (з перевіркою на наявність властивостей в об'єкті)
 //mult() перемножає збереженні значення і повертає результат (з перевіркою на наявність властивостей в об'єкті)
 
-const calculator = {
-  read(a, b) {
-    this.valueA = a;
-    this.valueB = b;
-  },
-  sum() {
-    if (this.valueA && this.valueB) {
-      return this.valueA + this.valueB;
-    }
-    return 'not a number';
-  },
-  mult() {
-    if (this.valueA && this.valueB) {
-      return this.valueA * this.valueB;
-    }
-    return 'not a number';
-  },
+// const calculator = {
+//   read(a, b) {
+//     this.valueA = a;
+//     this.valueB = b;
+//   },
+//   sum() {
+//     if (this.valueA && this.valueB) {
+//       return this.valueA + this.valueB;
+//     }
+//     return 'not a number';
+//   },
+//   mult() {
+//     if (this.valueA && this.valueB) {
+//       return this.valueA * this.valueB;
+//     }
+//     return 'not a number';
+//   },
+// };
+// // console.log(calculator.read(12, 13));
+// console.log(calculator.sum());
+// console.log(calculator.mult());
+// console.log(calculator);
+//============================================
+//5. Напишіть скрипт керування особистим кабінетом інтернет банка
+//Є об'єкт account в якому необхідно реалізувати
+//методи для работи з балансом та історією транзакцій
+//Типів транзакцій всього два.
+//Можна покласти або зняти гроші з рахунка
+const Transaction = {
+  DEPOSIT: "deposit",
+  WITHDRAW: "withdraw",
 };
-// console.log(calculator.read(12, 13));
-console.log(calculator.sum());
-console.log(calculator.mult());
-console.log(calculator);
+//Кожна транзакція це об'єкт з властивостями id, type, amount
+const account = {
+  //поточний баланс рахунка
+  balance: 0,
+  //Історія транзакцій
+  transactions: [],
+  //Метод створює і повертає об'єкт транзакцій
+  //Приймає сумму і тип транзакцій
+  createTransaction(type, amount) {
+    return {
+      type,
+      amount,
+    };
+  },
+  //Метод відповідає за додавання сумми к балансу.
+  //Приймає сумму транзакціи.
+  //Визиває createTransaction для створення об'єкта транзакціи
+  //після чого додає його в історію транзакцій
+  deposit(amount) {
+    this.balance += amount;
+   const transaction = this.createTransaction(Transaction.DEPOSIT, amount);
+   transaction.id = Math.random();
+  this.transactions.push(transaction);
+  },
+  
+  //Метод відповідає за зняття сумми з балансу.
+  //Приймає сумму транзакціи.
+  //Визиває createTransaction для створення об'єкта транзакціи
+  //після чого додає його в історю транзакцій
+  //Якщо amount більше ніж поточний баланс, виводимо повідомлення про те,
+  //що недостатньо коштів на рахунку
+  withdraw(amount) {
+    if (amount > this.balance)
+    return console.log("Недостатньо коштів на рахунку");
+    this.balance -= amount;
+    const transaction = this.createTransaction(Transaction.WITHDRAW, amount);
+    transaction.id = Math.random();
+    this.transactions.push(transaction);
+  },
+  //Метод повертає поточний баланс
+  getBalance() {},
+  //Метод шукає і повертає об'єкт транзакціи по id
+  getTransactionDetails(id) {},
+  //Метод повертає кількіств коштів вказаного типу
+  //транзакціи зі всієї історії транзакцій
+  getTransactionType(type) {},
+};
+
+account.deposit(100);
+account.deposit(500);
+account.deposit(1000);
+account.withdraw(50);
+account.withdraw(15000);
+
+
+console.log(account);
+
