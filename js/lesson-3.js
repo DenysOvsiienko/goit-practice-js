@@ -232,3 +232,66 @@ const users = [
 // const contactBook = new ContactBook();
 // contactBook.addContact(contact1.createContact());
 // console.log(contactBook);
+
+//Напиши класс Notes який управляє коллекцієй нотаток у
+//властивості items.
+//Нотатка це  об'єкт з властивостями text, priority
+//Додай класу статичну властивість Priority,
+//в якій буде зберігатись об'єкт з пріорітетами ("hight", "middle", "low").
+//Додай методи addNote(note), removeNote(noteText)
+//updatePriority(noteText, newPriority)
+
+// class Notes {
+//   static Priority = {
+//     HIGHT: 'hight',
+//     MIDDLE: 'middle',
+//     LOW: 'low',
+//   };
+//   constructor() {
+//     this.items = [];
+//   }
+//   addNote(note) {
+//     this.items.push(note);
+//   }
+
+//   removeNote(noteText) {
+//     this.items = this.items.filter(item => item.text !== noteText);
+//   }
+
+//   updatePriority(noteText, newPriority) {
+//     const note = this.items.find(item => item.text === noteText);
+//     if (note) note.priority = newPriority;
+//   }
+// }
+
+// const notes = new Notes();
+// notes.addNote({ text: 'dfghjjk', priority: Notes.Priority.MIDDLE });
+// notes.addNote({ text: 'hello', priority: Notes.Priority.LOW });
+// notes.addNote({ text: 'bye-bye', priority: Notes.Priority.HIGHT });
+
+// notes.removeNote('dfghjjk');
+// notes.updatePriority('hello', Notes.Priority.MIDDLE);
+// console.log(notes);
+
+//Функція askPassword приймає 2 колбека і викликає 1 із них в залежності від password
+function askPassword(ok, fail) {
+  let password = prompt('Password?');
+  if (password === 'admin') ok();
+  else fail();
+}
+// Створи об 'єкт user з властивостю name і двома методами
+// loginOk() і loginFail()
+// ці методи виводять в консоль повідомлення у форматі
+// "<name> logged in" та "<name> failed to log in" відповідно
+// зроби виклик функції askPassword, прив'язавши в якості аргументів методи об'єкта
+
+const user = {
+  name: 'Olena',
+  loginOk() {
+    console.log(`${this.name} logged in`);
+  },
+  loginFail() {
+    console.log(`${this.name} failed to log in`);
+  },
+};
+askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
