@@ -134,11 +134,101 @@ const users = [
 // console.log(getSortedUniqueSkills(users));
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
 
-function getSortedUniqueSkills(users) {
-  return users
-    .flatMap(user => user.skills)
-    .filter((skill, idx, arr) => arr.indexOf(skill) === idx)
-    .toSorted((a, b) => a.localeCompare(b));
-}
+// function getSortedUniqueSkills(users) {
+//   return users
+//     .flatMap(user => user.skills)
+//     .filter((skill, idx, arr) => arr.indexOf(skill) === idx)
+//     .toSorted((a, b) => a.localeCompare(b));
+// }
 
-console.table(getSortedUniqueSkills(users));
+// console.table(getSortedUniqueSkills(users));
+// =================================
+//Створити статистику - об'єкт, у якому вказується кількість тегів
+// const tweets = [
+//   { id: '000', likes: 5, tags: ['js', 'nodejs'] },
+//   { id: '001', likes: 2, tags: ['html', 'css'] },
+//   { id: '002', likes: 17, tags: ['html', 'js', 'nodejs'] },
+//   { id: '003', likes: 8, tags: ['css', 'react'] },
+//   { id: '004', likes: 0, tags: ['js', 'nodejs', 'react'] },
+// ];
+
+// const stats = {};
+// tweets
+//   .flatMap(tweet => tweet.tags)
+//   .forEach(tag => {
+//     console.log(stats[tag], stats);
+//     if (!stats[tag]) {
+//       stats[tag] = 1;
+//     } else {
+//       stats[tag] += 1;
+//     }
+//   });
+// =================================
+//2. Напиши класс Client який створює об'єкт
+//із властивостями login, email
+//Об'яви приватні властивості #login і #email,
+//доступ до яких зроби через геттер и сеттер:
+// get getClientData() має повертати об'єкт з переліченими властивостями
+// set changeEmail(newEmail) перезаписує пошту користувача
+// class Client {
+//   #login;
+//   #email;
+//   constructor(login, email) {
+//     this.#login = login;
+//     this.#email = email;
+//   }
+//   get getClientData() {
+//     return {
+//       clientLogin: this.#login,
+//       clientEmail: this.#email,
+//     };
+//   }
+//   set changeEmail(newEmail) {
+//     this.#email = newEmail;
+//   }
+// }
+// const client = new Client('Puppy', 'animal@gmail.com');
+
+// client.changeEmail = 'add@ghhj';
+// console.log(client.getClientData);
+// ====================
+// task-3
+//Класс ContactBook: Создайте класс Contact для представления контакта с полями name, email и phone.
+//Затем реализуйте класс ContactBook, который будет хранить список контактов
+//и предоставлять методы для добавления, удаления и поиска контактов.
+// class Contact {
+//   constructor(name, email, phone) {
+//     this.name = name;
+//     this.email = email;
+//     this.phone = phone;
+//   }
+//   createContact() {
+//     return {
+//       name: this.name,
+//       email: this.email,
+//       phone: this.phone,
+//     };
+//   }
+// }
+// class ContactBook extends Contact {
+//   constructor() {
+//     super();
+//     this.contacts = [];
+//   }
+//   addContact(contact) {
+//     this.contacts.push(contact);
+//   }
+//   removeContact(contactName) {
+//     this.contacts = this.contacts.filter(
+//       contact => contact.name !== contactName,
+//     );
+//   }
+//   searchContact(contactName) {
+//     const contact = this.contacts.find(contact => contact.name === contactName);
+//     return contact ?? 'contact not found';
+//   }
+// }
+// const contact1 = new Contact('Vova', 'dfghj@gmail', 3809643467);
+// const contactBook = new ContactBook();
+// contactBook.addContact(contact1.createContact());
+// console.log(contactBook);
