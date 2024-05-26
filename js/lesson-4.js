@@ -121,7 +121,6 @@
 При цьому позиція сусідніх кіл має залишатися незмінною.
 */
 
-
 // const circles = document.querySelectorAll('.gridItem');
 
 // circles.forEach(circle => {
@@ -149,14 +148,48 @@
 //  При натисканні на будь-який рядок у табличці відобразіть
 //  повідомлення з назвою продукту та його ціною.
 //  "Ви вибрали <product> за <price>".
-const productTable = document.querySelector('#productTable');
-const productDetails = document.querySelector('#productDetails');
+// const productTable = document.querySelector('#productTable');
+// const productDetails = document.querySelector('#productDetails');
 
-productTable.addEventListener('click', (e) => {
-if (e.target.nodeName !== 'TD') return;
-const parent = e.target.parentNode;
-const product = parent.firstElementChild.textContent;
-const price = parent.lastElementChild.textContent;
-productDetails.textContent = `Ви вибрали ${product} за ${price}`;
+// productTable.addEventListener('click', (e) => {
+// if (e.target.nodeName !== 'TD') return;
+// const parent = e.target.parentNode;
+// const product = parent.firstElementChild.textContent;
+// const price = parent.lastElementChild.textContent;
+// productDetails.textContent = `Ви вибрали ${product} за ${price}`;
+// });
+
+/*
+Завдання 8
+При натисканні на кожну з кнопок підсумовуються значення з data-атрибутів.
+За натисканням на кнопку "Вивести результат" виводиться сума значення, а також статистика з
+інформацією про те, яка кнопка була натиснута скільки разів.
+*/
+const statListElem = document.querySelector('.statList');
+console.log(statListElem);
+let summ = 0;
+let stats = {};
+
+const resultButton = document.querySelector('#resultButton');
+const resultSection = document.querySelector('#resultSection');
+resultButton.addEventListener('click', event => {
+  let markup = `total summ ${summ}`;
+  for (const [key, value] of Object.entries(stats)) {
+    markup += `${key} pressed ${value} times`;
+  }
+  resultSection.textContent = markup;
+  summ = 0;
+  stats = {};
 });
-
+statListElem.addEventListener('click', event => {
+  if (event.target.nodeName !== 'BUTTON') return;
+  const number = Number(event.target.dataset.number);
+  summ += number;
+  const key = event.target.textContent;
+  if (stats[key]) {
+    stats[key] += 1;
+  } else {
+    stats[key] = 1;
+  }
+  console.log(stats);
+});
