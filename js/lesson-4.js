@@ -121,13 +121,42 @@
 При цьому позиція сусідніх кіл має залишатися незмінною.
 */
 
-const circles = document.querySelectorAll('.gridItem');
 
-circles.forEach(circle => {
-  circle.addEventListener('mouseenter', () => {
-    circle.classList.add('hide');
-  });
-  circle.addEventListener('mouseleave', () => {
-    circle.classList.remove('hide');
-  });
+// const circles = document.querySelectorAll('.gridItem');
+
+// circles.forEach(circle => {
+//   circle.addEventListener('mouseenter', () => {
+//     circle.classList.add('hide');
+//   });
+//   circle.addEventListener('mouseleave', () => {
+//     circle.classList.remove('hide');
+//   });
+// });
+//========================
+// Завдання 14
+// Написати функцію, яка буде створювати список подій клавіатури event.key та event.code
+// Додати класи на список eventList, на елементи eventCode та eventKey
+// const eventThumb = document.querySelector('.eventThumb');
+// document.addEventListener('keydown', (e) => {
+//     const markup = `<ul class="eventList">
+//     <li class="eventCode">${e.code}</li>
+//     <li class="eventKey">${e.key}</li>
+//   </ul>`;
+// eventThumb.insertAdjacentHTML("afterbegin", markup);
+// });
+// ==========================
+// Завдання 16
+//  При натисканні на будь-який рядок у табличці відобразіть
+//  повідомлення з назвою продукту та його ціною.
+//  "Ви вибрали <product> за <price>".
+const productTable = document.querySelector('#productTable');
+const productDetails = document.querySelector('#productDetails');
+
+productTable.addEventListener('click', (e) => {
+if (e.target.nodeName !== 'TD') return;
+const parent = e.target.parentNode;
+const product = parent.firstElementChild.textContent;
+const price = parent.lastElementChild.textContent;
+productDetails.textContent = `Ви вибрали ${product} за ${price}`;
 });
+
