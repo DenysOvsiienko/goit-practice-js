@@ -1,28 +1,27 @@
 .grid {
+  display: flex;
+  width: 460px;
+  height: 460px;
+  border: 2px solid white;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+.gridItem {
+  width: calc(100% / 3);
+  height: calc(100% / 3);
+  background-color: red;
+  border: 1px dashed black;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hide {
+  background-color: transparent;
+  border: 1px dashed transparent;
+}
 
-    display: flex;
-    width: 460px;
-    height: 460px;
-    border: 2px solid white;
-    flex-wrap: wrap;
-    padding: 0;
-    margin: 0;
-  }
-  .gridItem {
-    width: calc(100% / 3);
-    height: calc(100% / 3);
-    background-color: red;
-    border: 1px dashed black;
-    border-radius: 50%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .hide {
-    background-color: transparent;
-    border: 1px dashed transparent;
-  }
-  
 .eventThumb {
   display: flex;
   gap: 10px;
@@ -61,4 +60,47 @@
   font-weight: 700;
   font-style: italic;
   font-size: 24px;
+}
+.statList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.calcButton {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+}
+.calcButton:hover {
+  background-color: #3e8e41;
+}
+#resultButton {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+#resultButton:hover {
+  background-color: #006b9e;
+}
+#resultSection {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
 }
