@@ -121,6 +121,7 @@
 При цьому позиція сусідніх кіл має залишатися незмінною.
 */
 
+
 // const circles = document.querySelectorAll('.gridItem');
 
 // circles.forEach(circle => {
